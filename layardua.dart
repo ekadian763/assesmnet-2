@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import 'layarsatu.dart';
+import 'utama.dart';
 
 class LayarDua extends StatelessWidget {
   final FormData formData;
@@ -13,7 +13,7 @@ class LayarDua extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Halaman Dua'),
+        title: Text('Hasil Data'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,9 +21,10 @@ class LayarDua extends StatelessWidget {
           Text('Nama: ${formData.textFieldDataName}'),
           Text('Prodi: ${formData.textFieldDataDesc}'),
           Text('Fakultas: ${formData.textFieldDataPrice}'),
-          Text('Jenis Kendaraan: ${formData.radioOptionData}'),
-          Text('Durasi peminjaman kendaraan: ${formData.checkboxData1}'),
-          Text('Menerima retur: ${formData.checkboxData2}'),
+          Text('Keperluan Peminjaman Kendaraan: ${formData.textFieldDataOne}'),
+          Text('Jenis Kendaraan: ${formData.radioOptionData1}'),
+          Text('Durasi peminjaman kendaraan: ${formData.radioOptionData2}'),
+          //Text('Menerima retur: ${formData.checkboxData2}'),
           Text("Dikerjakan oleh: 6701213087-Eka Dian Wananda")
         ],
       ),
