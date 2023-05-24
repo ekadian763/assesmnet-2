@@ -7,33 +7,33 @@ class FormData {
   String textFieldDataName;
   String textFieldDataDesc;
   String textFieldDataPrice;
-  String checkboxData1;
-  String checkboxData2;
-  String radioOptionData;
+  String textFieldDataOne;
+  String radioOptionData1;
+  String radioOptionData2;
 
   FormData(
       {required this.textFieldDataName,
       required this.textFieldDataDesc,
       required this.textFieldDataPrice,
-      required this.checkboxData1,
-      required this.checkboxData2,
-      required this.radioOptionData});
+      required this.textFieldDataOne,
+      required this.radioOptionData1,
+      required this.radioOptionData2,
+      });
 }
 
-class LayarSatu extends StatefulWidget {
+class utama extends StatefulWidget {
   @override
-  State<LayarSatu> createState() => _LayarSatuState();
+  State<utama> createState() => _utamaState();
 }
 
-class _LayarSatuState extends State<LayarSatu> {
+class _utamaState extends State<utama> {
   TextEditingController _textFieldController1 = TextEditingController();
   TextEditingController _textFieldController2 = TextEditingController();
   TextEditingController _textFieldController3 = TextEditingController();
-  String _selectedRadioOption = '';
-  String pengiriman = 'tidak';
-  bool _isChecked1 = false;
-  bool _isChecked2 = false;
-  String retur = 'tidak';
+  TextEditingController _textFieldController4 = TextEditingController();
+  String _selectedRadioOption1 = '';
+  String _selectedRadioOption2 = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _LayarSatuState extends State<LayarSatu> {
                     labelText: 'Nama', border: OutlineInputBorder()),
                 keyboardType: TextInputType.multiline,
                 minLines: 1, // <-- SEE HERE
-                maxLines: 5, // <-- SEE HERE
+                maxLines: 2, // <-- SEE HERE
               ),
             ),
           ),
@@ -65,7 +65,7 @@ class _LayarSatuState extends State<LayarSatu> {
                     labelText: 'Prodi', border: OutlineInputBorder()),
                 keyboardType: TextInputType.multiline,
                 minLines: 1, // <-- SEE HERE
-                maxLines: 4, // <-- SEE HERE
+                maxLines: 2, // <-- SEE HERE
               ),
             ),
           ),
@@ -79,7 +79,21 @@ class _LayarSatuState extends State<LayarSatu> {
                     labelText: 'Fakultas', border: OutlineInputBorder()),
                 keyboardType: TextInputType.multiline,
                 minLines: 1, // <-- SEE HERE
-                maxLines: 5, // <-- SEE HERE
+                maxLines: 2, // <-- SEE HERE
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+            child: SizedBox(
+              width: 500,
+              child: TextField(
+                controller: _textFieldController4,
+                decoration: InputDecoration(
+                    labelText: 'Keperluan Peminjaman Kendaraan', border: OutlineInputBorder()),
+                keyboardType: TextInputType.multiline,
+                minLines: 3, // <-- SEE HERE
+                maxLines: 8, // <-- SEE HERE
               ),
             ),
           ),
@@ -87,7 +101,7 @@ class _LayarSatuState extends State<LayarSatu> {
             children: [
               Text(
                 "Jenis Kendaraan",
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 11),
               ),
               Divider(),
             ],
@@ -95,59 +109,54 @@ class _LayarSatuState extends State<LayarSatu> {
           RadioListTile(
             title: Text("Avanza/Xenia"),
             value: "Avanza/Xenia",
-            groupValue: _selectedRadioOption,
+            groupValue: _selectedRadioOption1,
             onChanged: (String? newValue) {
               setState(() {
-                _selectedRadioOption = newValue ?? '';
+                _selectedRadioOption1 = newValue ?? '';
               });
             },
           ),
           RadioListTile(
             title: Text("ELF"),
             value: "ELF",
-            groupValue: _selectedRadioOption,
+            groupValue: _selectedRadioOption1,
             onChanged: (String? newValue) {
               setState(() {
-                _selectedRadioOption = newValue ?? '';
+                _selectedRadioOption1 = newValue ?? '';
               });
             },
           ),
           Row(
             children: [
               Text(
-                "Durasi peminjaman kendaraan",
-                style: TextStyle(
-                    fontSize: 17), // Ubah ukuran font sesuai kebutuhan
+                "Durasi Peminjaman Kendaraan",
+                style: TextStyle(fontSize: 11),
               ),
-              Switch(
-                value: _isChecked1,
-                onChanged: (bool newValue) {
-                  setState(() {
-                    _isChecked1 = newValue;
-                    pengiriman = newValue ? "12 jam" : "18 jam";
-                  });
-                },
-              ),
+              Divider(),
             ],
           ),
-          Row(
-            children: [
-              Text(
-                "Menerima Retur",
-                style: TextStyle(
-                    fontSize: 17), // Ubah ukuran font sesuai kebutuhan
-              ),
-              Switch(
-                value: _isChecked2,
-                onChanged: (bool newValue) {
-                  setState(() {
-                    _isChecked2 = newValue;
-                    retur = newValue ? "Ya" : "Tidak";
-                  });
-                },
-              ),
-            ],
+          RadioListTile(
+            title: Text("12 jam"),
+            value: "12 jam",
+            groupValue: _selectedRadioOption2,
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedRadioOption2 = newValue ?? '';
+              });
+            },
           ),
+          RadioListTile(
+            title: Text("18 jam"),
+            value: "18 jam",
+            groupValue: _selectedRadioOption2,
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedRadioOption2 = newValue ?? '';
+              });
+            },
+          ),
+         
+          
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: MaterialButton(
@@ -158,9 +167,9 @@ class _LayarSatuState extends State<LayarSatu> {
                   textFieldDataName: _textFieldController1.text,
                   textFieldDataDesc: _textFieldController2.text,
                   textFieldDataPrice: _textFieldController3.text,
-                  checkboxData1: pengiriman,
-                  checkboxData2: retur,
-                  radioOptionData: _selectedRadioOption,
+                  textFieldDataOne: _textFieldController4.text,
+                  radioOptionData1: _selectedRadioOption1,
+                  radioOptionData2: _selectedRadioOption2,
                 );
                 Navigator.push(
                   context,
