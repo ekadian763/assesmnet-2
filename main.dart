@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'layarsatu.dart';
+import 'utama.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LayarSatu(),
+      home: utama(),
     );
   }
 }
